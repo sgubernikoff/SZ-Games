@@ -18,13 +18,12 @@ function NavBar({ isLoggedIn }) {
     <div className="navbar">
       <header>SZ Games</header>
       <nav>
-        <NavLink exact to="/" exact style={linkStyles} className="nav-element">
-          <img className="logo" src="https://i.gifer.com/1iIH.gif"></img>
+        <NavLink exact to="/" style={linkStyles} className="nav-element">
+          <img className="logo" src="https://i.gifer.com/1iIH.gif" alt="logo"></img>
         </NavLink>
         <NavLink
           exact
           to="/"
-          exact
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",
@@ -37,7 +36,6 @@ function NavBar({ isLoggedIn }) {
         <NavLink
           exact
           to="/about"
-          exact
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",
@@ -50,7 +48,6 @@ function NavBar({ isLoggedIn }) {
         <NavLink
           exact
           to="/casino"
-          exact
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",
@@ -63,7 +60,6 @@ function NavBar({ isLoggedIn }) {
         <NavLink
           exact
           to="/experiences"
-          exact
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",
@@ -76,7 +72,6 @@ function NavBar({ isLoggedIn }) {
         <NavLink
           exact
           to="/accounts"
-          exact
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",
