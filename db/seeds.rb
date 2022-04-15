@@ -5,10 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "🌱 Seeding spices..."
 
-Item.create(
-      name: "Steve",
-      price: 40,
-      description: "cool",
-      image: "blank"
-    )
+10.times do
+  Item.create(
+    name: Faker::Commerce.product_name,
+    description: Faker::Commerce.color,
+    price: rand(20..200),
+    image: Faker::Avatar.image
+  )
+end
+
+puts "✅ Done seeding!"
