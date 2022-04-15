@@ -19,7 +19,7 @@ function NavBar({ isLoggedIn }) {
       <header>SZ Games</header>
       <nav>
         <NavLink exact to="/" exact style={linkStyles} className="nav-element">
-          <img className="logo" src="https://logodix.com/logo/512421.jpg"></img>
+          <img className="logo" src="https://i.gifer.com/1iIH.gif"></img>
         </NavLink>
         <NavLink
           exact

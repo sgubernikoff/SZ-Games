@@ -39,6 +39,16 @@
 }
 
 .logo {
-  height: 50px;
+  height: 45px;
   width: auto;
+}
+
+.image {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -3;
 }
