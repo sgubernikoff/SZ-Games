@@ -18,11 +18,13 @@ function App() {
 
   const [items, setItems] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/items/")
-  //     .then((res) => res.json())
-  //     .then((items) => setItems(items));
-  // }, []);
+  useEffect(() => {
+    fetch("/items")
+      .then((res) => res.json())
+      .then((items) => setItems(items));
+  }, []);
+
+  console.log(items);
 
   return (
     <div className="App">

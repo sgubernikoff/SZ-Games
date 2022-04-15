@@ -5,8 +5,8 @@ const linkStyles = {
   display: "inline-block",
   float: "left",
   width: "100px",
-  margin: "0 1% 1%",
-  background: "white",
+  margin: "0 .1% .1%",
+  background: "transparent",
   textDecoration: "none",
   color: "black",
   fontSize: "15px",
@@ -17,9 +17,13 @@ function NavBar({ isLoggedIn }) {
   return (
     <div className="navbar">
       <header>SZ Games</header>
-      <nav>
+      <nav class="navbar">
         <NavLink exact to="/" style={linkStyles} className="nav-element">
-          <img className="logo" src="https://i.gifer.com/1iIH.gif" alt="logo"></img>
+          <img
+            className="logo"
+            src="https://i.gifer.com/1iIH.gif"
+            alt="logo"
+          ></img>
         </NavLink>
         <NavLink
           exact
@@ -45,6 +49,7 @@ function NavBar({ isLoggedIn }) {
           {" "}
           <p>About</p>{" "}
         </NavLink>
+
         <NavLink
           exact
           to="/casino"
