@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
 
     def index
-        json render: Item.all
+        render json: Item.all
     end
 
     def show
         item = Item.find(params[:id])
-        json render: item
+        render json: item
     end
 end

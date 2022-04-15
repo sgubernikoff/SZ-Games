@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import Experience from "./Experience";
 
-function Experiences() {
-  return (
-    <div>Experiences</div>
-  )
+function Experiences({ items }) {
+  const display = items.map((item) => <Experience key={item.id} item={item} />);
+  return <div>{display}</div>;
 }
 
-export default Experiences
+export default Experiences;
