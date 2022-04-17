@@ -13,5 +13,8 @@
   "dependencies": {
     "react-navbar-dropdown": "^1.4.3",
     "react-router-dom": "^5.3.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.4.0"
   }
 }

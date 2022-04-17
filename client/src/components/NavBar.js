@@ -71,7 +71,7 @@ function NavBar({ isLoggedIn }) {
         </NavLink>
         <NavLink
           exact
-          to="/accounts"
+          to={isLoggedIn ? "/accounts" : "/signup"}
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",
