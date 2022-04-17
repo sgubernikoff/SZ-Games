@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
-    rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
-    rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
+rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
+rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
+    wrap_parameters format: []
 
     def index
         render json: User.all
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 
@@ -32,10 +33,10 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:name, :password, :points, :username)
+        params.permit(:name, :username, :password, :password_confirmation)
     end
 
-    def unprocessable_entity_response invalid
+    def unprocessable_entity_response(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
 

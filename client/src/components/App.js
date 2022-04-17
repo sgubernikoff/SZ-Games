@@ -14,20 +14,20 @@ import Login from "./account/Login";
 import Account from "./account/Account";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/items/")
-  //     .then((res) => res.json())
-  //     .then((items) => setItems(items));
-  // }, []);
+  useEffect(() => {
+    fetch("/items")
+      .then((res) => res.json())
+      .then((items) => setItems(items));
+  }, []);
 
   return (
     <div className="App">
       <Router>
-        <NavBar isLoggedIn={isLoggedIn} />
+        <NavBar isLoggedIn={!!user} />
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -51,7 +51,7 @@ function App() {
             <Experiences items={items} />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup onLogin={setUser}/>
           </Route>
           <Route exact path="/login">
             <Login />
