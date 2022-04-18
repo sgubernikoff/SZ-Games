@@ -32,6 +32,7 @@ function Signup({ onLogin }) {
         username: accountInfo.username,
         password: accountInfo.password,
         password_confirmation: accountInfo.passwordConfirmation,
+        points: 0
       }),
     }).then((r) => {
       if (r.ok) {

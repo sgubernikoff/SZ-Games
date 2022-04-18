@@ -26,6 +26,7 @@ function Account({ user, onLogin }) {
   return (
     <div className="logger">
       <p>{user.name}</p>
+      <p>Points: {user.points}</p>
       <button onClick={logOut}>Log out</button>
       <button onClick={deleteAccount}>Delete account</button>
     </div>
