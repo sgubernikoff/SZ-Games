@@ -27,7 +27,7 @@ function About() {
         <p>
           <span>SPEND!</span> those hard earned points on our lucrative prizes.
           Within weeks of winning simple arcade games, you can find yourself on
-          a helicopter ride over NYC. Seems to good to be true? Try it out
+          a helicopter ride over NYC. Seems too good to be true? Try it out
           yourself!
         </p>
       </div>

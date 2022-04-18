@@ -318,3 +318,35 @@ span {
   transform: translateY(5px);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
 }
+
+.delete {
+  width: 140px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Baskerville", cursive;
+  letter-spacing: 3px;
+  background: #81a28f;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+  display: block;
+  margin: auto;
+  margin-top: 1%;
+}
+.logout {
+  width: 140px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Baskerville", cursive;
+  letter-spacing: 3px;
+  background: #81a28f;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+  display: block;
+  margin: auto;
+}

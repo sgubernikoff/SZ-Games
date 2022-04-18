@@ -24,4 +24,5 @@ puts "🌱 Seeding spices..."
   Item.create(name: "Cooking Lesson with Guy Fieri", description: "Meet the Guy!", price: 900, image: "https://media.gq.com/photos/59dfc6d9d61cb80476584e18/master/pass/guy-fieiri-flame.jpg")
   Item.create(name: "$100 Gift Card AMEX", description: "Do whatever you want!", price: 300, image: "https://milestomemories.com/wp-content/uploads/2015/08/amexgc.png")
 
+
 puts "✅ Done seeding!"

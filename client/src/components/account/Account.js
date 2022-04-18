@@ -25,10 +25,16 @@ function Account({ user, onLogin }) {
   if (!user) return null;
   return (
     <div className="logger">
-      <p>{user.name}</p>
-      <p>Points: {user.points}</p>
-      <button onClick={logOut}>Log out</button>
-      <button onClick={deleteAccount}>Delete account</button>
+      <p>{user.username}</p>
+      <p>{user.points} 🪙 </p>
+      <div className="accounto">
+        <button className="logout" onClick={logOut}>
+          Log Out
+        </button>
+        <button className="delete" onClick={deleteAccount}>
+          Delete Account
+        </button>
+      </div>
     </div>
   );
 }
