@@ -1,12 +1,12 @@
 import React from "react";
 
 function ExperienceCard({ item }) {
-  
   return (
     <div className="exp">
-      <img src={item.image} alt={item.description} />
+      <img className="pic" src={item.image} alt={item.description} />
       <h3>{item.name}</h3>
-      <p>{item.price} coins</p>
+      <p>{item.price} 🪙</p>
+      <button>Purchase</button>
     </div>
   );
 }
