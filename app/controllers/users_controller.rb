@@ -34,7 +34,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
     private
 
     def user_params
-        params.permit(:name, :username, :password, :password_confirmation)
+        params.permit(:name, :username, :password, :password_confirmation, :points)
     end
 
     def unprocessable_entity_response(invalid)

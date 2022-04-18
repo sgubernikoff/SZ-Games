@@ -3,7 +3,6 @@ import { React, useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import About from "./About";
-import Klondike from "./games/Klondike";
 import Slots from "./games/Slots";
 import Roulette from "./games/Roulette";
 import Blackjack from "./games/Blackjack";
@@ -42,9 +41,6 @@ function App() {
           </Route>
           <Route exact path="/about">
             <About />
-          </Route>
-          <Route exact path="/klondike">
-            <Klondike />
           </Route>
           <Route exact path="/slots">
             <Slots />
