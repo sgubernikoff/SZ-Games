@@ -8,8 +8,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
     end
 
     def show
-        user = User.find(params[:id])
-        render json: user, include: :items
+        user = User.find(session[:user_id])
+        render json: user, include: :items, status: :created
     end
 
     def create
@@ -25,7 +25,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
     end
 
     def destroy
-        user = User.find(params[:id])
+        user = User.find(session[:user_id])
+        session.delete :user_id
         user.destroy
         head :no_content
     end

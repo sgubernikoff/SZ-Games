@@ -62,3 +62,11 @@
   margin: 0;
   overflow: hidden;
 }
+
+.card {
+  width: 80px
+}
+
+.hidden {
+  display: none;
+}

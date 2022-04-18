@@ -1,5 +1,6 @@
 import {React, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 function Signup({onLogin}) {
   let history = useHistory();
@@ -36,7 +37,7 @@ function Signup({onLogin}) {
       if (r.ok) {
         r.json().then((user) => {
           onLogin(user);
-          history.push('/');
+          history.push('/account');
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -65,7 +66,7 @@ function Signup({onLogin}) {
         <button type="submit" className="login-button">Sign up</button>
       </form>
       {
-        errors.length > 0 ? errors.map(error => <p key={error.id} >{error}</p>) : null
+        errors.length > 0 ? errors.map(error => <p key={uuid()} >{error}</p>) : null
       }
       <p>Already have an account? <Link to='/login'>Log in</Link></p>
     </div>
