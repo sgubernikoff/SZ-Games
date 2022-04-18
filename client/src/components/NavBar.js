@@ -16,12 +16,11 @@ const linkStyles = {
 function NavBar({ isLoggedIn }) {
   return (
     <div className="navbar">
-      <header>SZ Games</header>
       <nav className="navbar">
         <NavLink exact to="/" style={linkStyles} className="nav-element">
           <img
             className="logo"
-            src="https://i.gifer.com/1iIH.gif"
+            src="https://cdn.substack.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F95c10315-70ae-4f8a-ad38-e3729fc04eae_1764x1764.gif"
             alt="logo"
           ></img>
         </NavLink>
@@ -50,6 +49,11 @@ function NavBar({ isLoggedIn }) {
           <p>About</p>{" "}
         </NavLink>
 
+        <a className="header" href="/">
+          caSZino
+        </a>
+      </nav>
+      <nav className="navbar2">
         <NavLink
           exact
           to="/casino"

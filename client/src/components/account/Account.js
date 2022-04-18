@@ -1,14 +1,14 @@
-import React from 'react';
-import {useHistory} from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 
-function Account({user, onLogin}) {
+function Account({ user, onLogin }) {
   let history = useHistory();
-  
+
   function logOut() {
     fetch("/sessions/0", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         onLogin(null);
-        history.push('/');
+        history.push("/");
       }
     });
   }
@@ -17,19 +17,19 @@ function Account({user, onLogin}) {
     fetch("users/0", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         onLogin(null);
-        history.push('/');
+        history.push("/");
       }
-    })
+    });
   }
 
-  if (!user) return null
+  if (!user) return null;
   return (
-    <div>
+    <div className="logger">
       <p>{user.name}</p>
       <button onClick={logOut}>Log out</button>
       <button onClick={deleteAccount}>Delete account</button>
     </div>
-  )
+  );
 }
 
-export default Account
+export default Account;

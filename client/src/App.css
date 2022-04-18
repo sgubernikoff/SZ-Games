@@ -14,17 +14,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -38,8 +27,15 @@
   }
 }
 
+.header {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 50px;
+}
+
 .logo {
-  height: 45px;
+  height: 50px;
   width: auto;
 }
 
@@ -61,12 +57,193 @@
   width: 100%;
   margin: 0;
   overflow: hidden;
+  margin-right: 3%;
+}
+
+.navbar2 {
+  display: flex;
+  top: 0%;
+  position: absolute;
+  right: 0;
+  margin-left: 3%;
 }
 
 .card {
-  width: 80px
+  width: 80px;
 }
 
 .hidden {
   display: none;
+}
+
+.casinoList {
+  list-style: none;
+  font-size: 50px;
+  text-align: center;
+  list-style-position: inside;
+  margin-top: 15%;
+  margin-left: -3%;
+  font-weight: bold;
+}
+
+li {
+  margin: 15px 0;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #bea891;
+}
+
+a {
+  text-decoration: none;
+}
+.casino {
+  background-size: cover;
+}
+
+.listo {
+  background-image: linear-gradient(
+    to right,
+    #81a28f,
+    #81a28f 50%,
+    #bea891 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.listo:before {
+  content: "";
+  background: #81a28f;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.listo:hover {
+  background-position: 0;
+}
+
+.listo:hover::before {
+  width: 100%;
+}
+
+/* Presentational Styles */
+.casino {
+  display: grid;
+  font-family: "Baskerville", sans-serif;
+  font-size: 27px;
+  font-weight: 500;
+  height: 45vh;
+  text-align: center;
+}
+
+label {
+  font-family: "Baskerville", sans-serif;
+  font-size: 15px;
+}
+
+form {
+  margin: 15px 0;
+}
+
+input {
+  margin: 7px 0;
+  display: inline-block;
+  border-radius: 6px;
+  border: none;
+}
+
+.login-form {
+  display: inline-block;
+  text-align: center;
+}
+
+b {
+  font-weight: normal;
+  font-size: 18px;
+  margin-right: 4px;
+  text-align: left;
+  color: #bea891;
+}
+
+.login-button {
+  margin-top: 15px;
+}
+
+.login-button {
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Baskerville", cursive;
+  letter-spacing: 5px;
+  background: #bea891;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+}
+
+.login-button:after {
+  content: "";
+  position: absolute;
+  transform: translateX(-55px) translateY(-40px);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0px 0px 50px transparent;
+  transition: 500ms;
+}
+
+.login-button:hover {
+  transform: translateY(5px);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+p {
+  font-size: 20px;
+  color: #bea891;
+}
+
+.about {
+  color: #bea891;
+  font-size: 35px;
+  width: 50%;
+}
+
+.categories > p {
+  margin: 3%;
+  color: #81a28f;
+}
+
+span {
+  color: #81a28f;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.categories {
+  opacity: 0.75;
+  margin-top: 5%;
+}
+.categories:hover {
+  opacity: 1;
+}
+
+.slotto {
+  width: 300px;
+  height: auto;
 }

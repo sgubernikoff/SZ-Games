@@ -8,13 +8,13 @@ import Slots from "./games/Slots";
 import Roulette from "./games/Roulette";
 import Blackjack from "./games/Blackjack";
 import Experiences from "./Experiences";
+import Casino from "./Casino";
 import Signup from "./account/Signup";
 import Login from "./account/Login";
 import Account from "./account/Account";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
 
@@ -55,17 +55,20 @@ function App() {
           <Route exact path="/blackjack">
             <Blackjack />
           </Route>
+          <Route exact path="/casino">
+            <Casino />
+          </Route>
           <Route exact path="/experiences">
             <Experiences items={items} />
           </Route>
           <Route exact path="/signup">
-            <Signup onLogin={setUser}/>
+            <Signup onLogin={setUser} />
           </Route>
           <Route exact path="/login">
-            <Login onLogin={setUser}/>
+            <Login onLogin={setUser} />
           </Route>
           <Route exact path="/account">
-            <Account user={user} onLogin={setUser}/>
+            <Account user={user} onLogin={setUser} />
           </Route>
         </Switch>
       </Router>
