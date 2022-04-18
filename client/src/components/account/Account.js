@@ -1,8 +1,34 @@
-import React from 'react'
+import React from 'react';
+import {useHistory} from 'react-router-dom';
 
-function Account() {
+function Account({user, onLogin}) {
+  let history = useHistory();
+  
+  function logOut() {
+    fetch("/sessions/0", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        onLogin(null);
+        history.push('/');
+      }
+    });
+  }
+
+  function deleteAccount() {
+    fetch("users/0", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        onLogin(null);
+        history.push('/');
+      }
+    })
+  }
+
+  if (!user) return null
   return (
-    <div>Account</div>
+    <div>
+      <p>{user.name}</p>
+      <button onClick={logOut}>Log out</button>
+      <button onClick={deleteAccount}>Delete account</button>
+    </div>
   )
 }
 

@@ -17,7 +17,7 @@ function NavBar({ isLoggedIn }) {
   return (
     <div className="navbar">
       <header>SZ Games</header>
-      <nav class="navbar">
+      <nav className="navbar">
         <NavLink exact to="/" style={linkStyles} className="nav-element">
           <img
             className="logo"
@@ -76,7 +76,7 @@ function NavBar({ isLoggedIn }) {
         </NavLink>
         <NavLink
           exact
-          to="/accounts"
+          to={isLoggedIn ? "/account" : "/login"}
           style={linkStyles}
           activeStyle={{
             textDecoration: "underline",

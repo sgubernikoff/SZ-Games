@@ -1,6 +1,5 @@
 import "../App.css";
 import { React, useEffect, useState } from "react";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import About from "./About";
@@ -12,10 +11,11 @@ import Experiences from "./Experiences";
 import Signup from "./account/Signup";
 import Login from "./account/Login";
 import Account from "./account/Account";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -24,12 +24,18 @@ function App() {
       .then((items) => setItems(items));
   }, []);
 
-  console.log(items);
+  useEffect(() => {
+    fetch("/users/0").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   return (
     <div className="App">
       <Router>
-        <NavBar isLoggedIn={isLoggedIn} />
+        <NavBar isLoggedIn={!!user} />
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -53,13 +59,13 @@ function App() {
             <Experiences items={items} />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup onLogin={setUser}/>
           </Route>
           <Route exact path="/login">
-            <Login />
+            <Login onLogin={setUser}/>
           </Route>
           <Route exact path="/account">
-            <Account />
+            <Account user={user} onLogin={setUser}/>
           </Route>
         </Switch>
       </Router>
