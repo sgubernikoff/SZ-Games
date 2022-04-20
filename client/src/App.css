@@ -69,7 +69,7 @@
 }
 
 .card {
-  width: 80px;
+  width: 110px;
 }
 
 .hidden {
@@ -304,7 +304,7 @@ span {
 }
 
 .doz-item {
-	flex-basis: 220px;
+	flex-basis: 197px;
 	border: solid white;
 	padding-top: 15px;
 	padding-bottom: 30px;
@@ -324,7 +324,7 @@ span {
 }
 
 .outside-section {
-	flex-basis: 107px;
+	flex-basis: 97px;
 	border: solid white;
 	padding-top: 15px;
 	padding-bottom: 30px;
@@ -356,4 +356,19 @@ span {
 
 .value {
 	transform: rotate(-90deg);
+}
+
+.disabled-link {
+  pointer-events: none;
+}
+
+.chip {
+  width: 70px;
+  border-radius: 50%;
+}
+
+.chip-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }

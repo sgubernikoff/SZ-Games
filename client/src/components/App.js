@@ -17,24 +17,29 @@ function App() {
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
+  function getItems() {
     fetch("/items")
       .then((res) => res.json())
       .then((items) => setItems(items));
-  }, []);
+  }
 
-  useEffect(() => {
+  function getUser() {
     fetch("/users/0").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
+  }
+
+  useEffect(() => {
+    getUser();
+    getItems();
   }, []);
 
   return (
     <div className="App">
       <Router>
-        <NavBar isLoggedIn={!!user} />
+        <NavBar isLoggedIn={!!user} user={user}/>
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -49,10 +54,10 @@ function App() {
             <Roulette />
           </Route>
           <Route exact path="/blackjack">
-            <Blackjack />
+            <Blackjack user={user} reloadUser={getUser} />
           </Route>
           <Route exact path="/casino">
-            <Casino />
+            <Casino isLoggedIn={!!user}/>
           </Route>
           <Route exact path="/experiences">
             <Experiences items={items} />

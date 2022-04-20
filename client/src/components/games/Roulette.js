@@ -10,10 +10,7 @@ function Roulette() {
   }
 
   function spinWheel() {
-    fetch('https://www.roulette.rip/api/play?bet=low&wager=200', {
-      method: 'GET',
-      mode: 'no-cors'
-    })
+    fetch('/spins/0')
     .then(response => response.json())
     .then(spinData => console.log(spinData))
   }

@@ -2,12 +2,12 @@ import {React, useState} from 'react';
 import { v4 as uuid } from 'uuid';
 import timeout from "../timeout";
 
-function Blackjack() {
+function Blackjack({user, reloadUser}) {
   const faceDownCard = "https://opengameart.org/sites/default/files/card%20back%20red.png";
   const [deckId, setDeckId] = useState(null);
-  const [playerCards, setPlayerCards] = useState([]);
-  const [houseCards, setHouseCards] = useState([]);
+  const [cards, setCards] = useState({playerCards: [], dealerCards: []});
   const [endMode, setEndMode] = useState(false);
+  const [bet, setBet] = useState(0);
 
   function getDeck() {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -19,8 +19,8 @@ function Blackjack() {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=4`)
     .then(response => response.json())
     .then(cardData => {
-      setPlayerCards([cardData.cards[0], cardData.cards[1]]);
-      setHouseCards([cardData.cards[2], cardData.cards[3]]);
+      setCards({playerCards: [cardData.cards[0], cardData.cards[1]], dealerCards: [cardData.cards[2], cardData.cards[3]]});
+      setEndMode(false);
     });
   }
 
@@ -34,6 +34,7 @@ function Blackjack() {
   }
 
   function getHandValue(hand) {
+    if (hand.length === 0) return 0;
     let handAces = hand.filter(card => card.value === "ACE");
     if (handAces.length > 1) {
       handAces.slice(1).forEach(card => card.value = "1");
@@ -43,64 +44,84 @@ function Blackjack() {
     return cardsValue;
   }
 
-  function hitDealer () {
-    if (houseCardsValue <= 16) {
+  async function hitDealer () {
+    if (dealerCardsValue <= 16) {
       fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`)
       .then(response => response.json())
       .then(cardData => {
-        if (getHandValue([...houseCards, cardData.cards[0]]) >= 17) {
-          setHouseCards([...houseCards, cardData.cards[0]]);
+        if (getHandValue([...cards.dealerCards, cardData.cards[0]]) >= 17) {
+          setCards({...cards, dealerCards: [...cards.dealerCards, cardData.cards[0]]});
         }
-        else if (getHandValue([...houseCards, cardData.cards[0], cardData.cards[1]]) >= 17) {
-          setHouseCards([...houseCards, cardData.cards[0], cardData.cards[1]]);
+        else if (getHandValue([...cards.dealerCards, cardData.cards[0], cardData.cards[1]]) >= 17) {
+          setCards({...cards, dealerCards: [...cards.dealerCards, cardData.cards[0], cardData.cards[1]]});
         }
         else {
-          setHouseCards([...houseCards, cardData.cards[0], cardData.cards[1], cardData.cards[2]]);
+          setCards({...cards, dealerCards: [...cards.dealerCards, cardData.cards[0], cardData.cards[1], cardData.cards[2]]});
         }
       });
     }
-  }
-
-  async function closeGame() {
-    await timeout(500);
-    setEndMode(true);
-  }
-
-  function stand() {
-    hitDealer();
-    closeGame();
   }
 
   function hitPlayer() {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
     .then(response => response.json())
     .then(cardData => {
-      setPlayerCards([...playerCards, cardData.cards[0]]);
+      setCards({...cards, playerCards: [...cards.playerCards, cardData.cards[0]]});
     })
   }
 
-  let playerCardsValue = getHandValue(playerCards);
-  let houseCardsValue = getHandValue(houseCards);
+  async function closeGame() {
+    setEndMode(true);
+    if (winMessage().includes("win")) {
+      fetch("/users/0", {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({points: user.points + bet})
+      })
+      .then(response => response.json())
+      .then(() => {
+        reloadUser();
+        setBet(0);
+      })
+    }
+    else {
+      setBet(0);
+    }
+  }
 
-  if (playerCardsValue >= 21 || playerCards.length >= 5) {
+  async function stand() {
     hitDealer();
+    await timeout(400);
     closeGame();
   }
-  
+
+  let playerCardsValue = getHandValue(cards.playerCards);
+  let dealerCardsValue = getHandValue(cards.dealerCards);
+
+  if (!endMode && ((playerCardsValue === 21 && cards.playerCards.length === 2) || cards.dealerCards.length >= 5)) {
+    closeGame();
+  }
+  else if (!endMode && (playerCardsValue >= 21 || cards.playerCards.length >= 5)) {
+    stand();
+  }
+
   function winMessage() {
-    if (playerCardsValue > 21) {
-      return "You went over 21! You lose!";
-    }
-    else if (houseCardsValue > 21) {
-      return "Dealer went over 21! You win!";
-    }
-    else if (playerCardsValue === houseCardsValue) {
-      return "It's a tie!";
-    }
-    if (playerCardsValue === 21 && playerCards.length === 2) {
+    if (playerCardsValue === 21 && cards.playerCards.length === 2 && (dealerCardsValue !== 21 || cards.dealerCards.length !== 2)) {
       return "BLACKJACK! You win!";
     }
-    else if (playerCardsValue > houseCardsValue) {
+    else if (playerCardsValue <= 21 && cards.playerCards.length === 5 && (dealerCardsValue !== 21 || cards.dealerCards.length !== 2)) {
+      return "You drew 5 cards without going over 21. You win!"
+    }
+    else if (playerCardsValue > 21) {
+      return "You went over 21! You lose!";
+    }
+    else if (dealerCardsValue > 21) {
+      return "Dealer went over 21! You win!";
+    }
+    else if (playerCardsValue === dealerCardsValue) {
+      return "It's a tie!";
+    }
+    else if (playerCardsValue > dealerCardsValue) {
       return "Your cards beat the dealer's. You win!";
     }
     else {
@@ -109,45 +130,56 @@ function Blackjack() {
   }
 
   function resetGame() {
-    setPlayerCards([]);
-    setHouseCards([]);
-    setEndMode(false);
+    setCards({playerCards: [], dealerCards: []});
     dealInit();
+  }
+
+  function addToBet(e) {
+    setBet(bet + parseInt(e.target.name));
   }
 
   if (deckId) {
     return (
       <div>
-        <div className={(playerCards.length > 0 && houseCards.length > 0) ? "player-cards" : "hidden"}>
-          <p>Player cards: {playerCardsValue}</p>
-          {
-            playerCards.map(card => {
-              return <img className="card" key={uuid()} src={card.image} alt="card"></img>
-            })
-          }
-          <button className={endMode ? "hidden" : ""} onClick={hitPlayer}>Hit</button>
-          <button className={endMode ? "hidden" : ""} onClick={stand}>Stand</button>
+        <div>
+          <p>Player cards{playerCardsValue === 0 ? "" : `: ${playerCardsValue}`}</p>
+          <div className="card-container">
+            {
+              [...Array(5).keys()].map(index => {
+                return <img className="card" key={uuid()} src={cards.playerCards[index] ? cards.playerCards[index].image : "/rectangle.jpeg"} alt="card"></img>
+              })
+            }
+          </div>
+          <br></br>
+          <button className={endMode || cards.playerCards.length < 2 || cards.dealerCards.length < 2 ? "hidden" : ""} onClick={hitPlayer}>Hit</button>
+          <button className={endMode || cards.playerCards.length < 2 || cards.dealerCards.length < 2 ? "hidden" : ""} onClick={stand}>Stand</button>
         </div>
-        <div className={(playerCards.length > 0 && houseCards.length > 0) ? "house-cards" : "hidden"}>
-          <p>Dealers cards {endMode ? `: ${houseCardsValue}`: ""}</p>
-          {
-            houseCards.slice(0,1).map(card => {
-              return <img className="card" key={uuid()} src={card.image} alt="card"></img>
-            })
-          }
-          {
-            houseCards.slice(1).map(card => {
-              return <img className="card" key={uuid()} src={endMode ? card.image : faceDownCard} alt="card"></img>
-            })
-          }
+        <div>
+          <p>Dealer cards{!endMode || cards.dealerCards === 0 ? "" : `: ${dealerCardsValue}`}</p>
+          <div className="card-container">
+            <img className="card" key={uuid()} src={cards.dealerCards[0] ? cards.dealerCards[0].image : faceDownCard} alt="card"></img>
+            <img className="card" key={uuid()} src={endMode && cards.dealerCards[1] ? cards.dealerCards[1].image : faceDownCard} alt="card"></img>
+            {
+              [...Array(3).keys()].map(index => {
+                return <img className="card" key={uuid()} src={endMode && cards.dealerCards[index+2] ? cards.dealerCards[index+2].image : "./rectangle.jpeg"} alt="card"></img>
+              })
+            }
+          </div>
         </div>
-        <button onClick={dealInit} className={playerCards.length > 0 ? "hidden" : ""} >Deal</button>
+        <button onClick={dealInit} className={(cards.playerCards.length > 0 || endMode) ? "hidden" : ""} >Deal</button>
         {
-          (endMode && houseCards.length > 0) ? <p>{winMessage()}</p> : null
+          (endMode && cards.dealerCards.length > 0) ? <p>{winMessage()}</p> : null
         }
         {
-          (endMode && houseCards.length > 0) ? <button onClick={resetGame}>Play again</button> : null
+          (endMode && cards.dealerCards.length > 0) ? <button onClick={resetGame}>Play again</button> : null
         }
+        <div className={(cards.playerCards.length >= 2 && cards.dealerCards.length >= 2) ? "chip-container" : "hidden"}>
+          <img onClick={addToBet} name={10} src="./black-chip.png" alt="chip" className="chip"/><p>10</p>
+          <img onClick={addToBet} name={50} src="./black-chip.png" alt="chip" className="chip"/><p>50</p>
+          <img onClick={addToBet} name={100} src="./black-chip.png" alt="chip" className="chip"/><p>100</p>
+          <img onClick={addToBet} name={500} src="./black-chip.png" alt="chip" className="chip"/><p>500</p>
+        </div>
+        <p className={(cards.playerCards.length >= 2 && cards.dealerCards.length >= 2) ? "" : "hidden"}>Bet amount: {bet} <button onClick={() => setBet(0)}>Clear bet</button></p>
       </div>
     )
   }

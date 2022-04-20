@@ -13,7 +13,7 @@ const linkStyles = {
   fontFamily: "Baskerville",
 };
 
-function NavBar({ isLoggedIn }) {
+function NavBar({ isLoggedIn, user }) {
   return (
     <div className="navbar">
       <nav className="navbar">
@@ -46,13 +46,16 @@ function NavBar({ isLoggedIn }) {
           className="nav-element"
         >
           {" "}
-          <p>About</p>{" "}
+          <p>About</p>
+          {" "}
         </NavLink>
-
         <a className="header" href="/">
           caSZino
         </a>
       </nav>
+      {
+        isLoggedIn ? <p>Points: {user.points}</p> : null
+      }
       <nav className="navbar2">
         <NavLink
           exact

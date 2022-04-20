@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :purchases, only: [:create, :index]
   resources :items, only: [:index, :show]
   resources :sessions, only: [:create, :destroy]
+  resources :spins, only: [:index, :show]
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
