@@ -267,6 +267,7 @@ p {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .pic {
@@ -280,7 +281,7 @@ p {
 
 .exp > h3 {
   margin: auto;
-  margin-top: 10px;
+  margin-top: 15px;
   color: #81a28f;
 }
 
@@ -288,6 +289,7 @@ p {
   font-size: 25px;
   margin: auto;
   color: #81a28f;
+  margin-bottom: 45px;
 }
 
 .exp > button {
@@ -302,6 +304,8 @@ p {
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
   transition: 500ms;
   border-radius: 6px;
+  position: absolute;
+  bottom: 0;
 }
 
 .exp > button:after {
