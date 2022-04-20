@@ -104,7 +104,7 @@ function NavBar({ isLoggedIn, user }) {
         </NavLink>
         <div className="home_points">
           {isLoggedIn ? (
-            <p>🪙: {user.points}</p>
+            <p>🪙 {user.points}</p>
           ) : (
             <img
               className="logo"
