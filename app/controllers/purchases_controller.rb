@@ -6,7 +6,10 @@ class PurchasesController < ApplicationController
 
     def create
         purchase = Purchase.create!(purchase_params)
-        render json: purchase, status: :created
+        item = Item.find(params[:item_id])
+        user = User.find(session[:user_id])
+        user.update(points: user.points - item.price)
+        render json: {item: purchase.item, points: user.points}, status: :created
     end
 
     private

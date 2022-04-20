@@ -12,7 +12,11 @@ function Roulette() {
   function spinWheel() {
     fetch('/spins/0')
     .then(response => response.json())
-    .then(spinData => console.log(spinData))
+    .then(spinData => setSpin(spinData))
+  }
+
+  function addBet(e) {
+    console.log(parseInt(e.target.name))
   }
 
   return (
@@ -173,9 +177,12 @@ function Roulette() {
         </div>
       </div>
       <button onClick={spinWheel}>Spin</button>
-      {/* {
-        spin ? <p>number: {spin.number}, color: {spin.color}, parity: {spin.parity}</p> : null
-      } */}
+      <div className="chip-container">
+        <img onClick={addBet} name={10} src="./black-chip.png" alt="chip" className="chip"/><p>10</p>
+        <img onClick={addBet} name={50} src="./black-chip.png" alt="chip" className="chip"/><p>50</p>
+        <img onClick={addBet} name={100} src="./black-chip.png" alt="chip" className="chip"/><p>100</p>
+        <img onClick={addBet} name={500} src="./black-chip.png" alt="chip" className="chip"/><p>500</p>
+      </div>
     </div>
   )
 }
