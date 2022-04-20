@@ -64,9 +64,7 @@ function NavBar({ isLoggedIn, user }) {
           earn a-way
         </a>
       </nav>
-      {
-        isLoggedIn ? <p>Points: {user.points}</p> : null
-      }
+
       <nav className="navbar2">
         <NavLink
           exact
@@ -104,6 +102,17 @@ function NavBar({ isLoggedIn, user }) {
           {" "}
           <p className="navvy">Account</p>{" "}
         </NavLink>
+        <div className="home_points">
+          {isLoggedIn ? (
+            <p>🪙: {user.points}</p>
+          ) : (
+            <img
+              className="logo"
+              src="https://cdn.substack.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F95c10315-70ae-4f8a-ad38-e3729fc04eae_1764x1764.gif"
+              alt="logo"
+            ></img>
+          )}
+        </div>
       </nav>
     </div>
   );

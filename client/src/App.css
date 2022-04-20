@@ -69,9 +69,6 @@
   margin-top: 1%;
 }
 
-.navbar2 li {
-}
-
 .card {
   width: 110px;
 }
@@ -219,7 +216,7 @@ b {
 }
 
 p {
-  font-size: 45px;
+  font-size: 22px;
   color: #bea891;
 }
 
@@ -395,6 +392,10 @@ h1 {
   font-size: 100px;
   border-radius: 6px;
 }
+
+.slot > p {
+  font-size: 55px;
+}
 .slot:hover {
   box-shadow: 0 8px 16px 0 #81a28f;
   box-shadow: 0 2px 5px 0 #81a28f;
@@ -508,113 +509,114 @@ h1 {
   color: #81a28f;
 }
 .container-first {
-	display: flex;
-	flex-flow: column-reverse wrap;
-	align-content: flex-start;
-	width: auto;
-	height: 300px;
-	padding: 0px 0px 0px 20px;
+  display: flex;
+  flex-flow: column-reverse wrap;
+  align-content: flex-start;
+  width: auto;
+  height: 300px;
+  padding: 0px 0px 0px 20px;
   border-top: 2px sold white;
 }
 
-.red-item, .black-item, .zero-item {
+.red-item,
+.black-item,
+.zero-item {
   box-sizing: border-box;
   border: none;
   border-left: 3px solid white;
   border-top: 3px solid white;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	text-align: center;
-	width: 50px;
-	font-size: 30px;
-	color: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+  width: 50px;
+  font-size: 30px;
+  color: white;
 }
 .zero-item {
   border-bottom: 3px solid white;
-	padding-top: 110px;
-	padding-bottom: 111px;
+  padding-top: 110px;
+  padding-bottom: 111px;
 }
 .red-item {
-	background-color: red;
+  background-color: red;
 }
 
 .black-item {
-	background-color: black;
+  background-color: black;
 }
 
 .column-item {
-	border: solid white;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	text-align: center;
-	width: 50px;
-	font-size: 30px;
-	color: white;
+  border: solid white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+  width: 50px;
+  font-size: 30px;
+  color: white;
 }
 
 .container-second {
-	display: flex;
-	width: auto;
-	height: 70px;
-	flex-flow: row wrap;
-	align-content: flex-start;
-	padding: 0px 0px 0px 72px;
-
+  display: flex;
+  width: auto;
+  height: 70px;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  padding: 0px 0px 0px 72px;
 }
 
 .doz-item {
-	flex-basis: 197px;
-	border: solid white;
-	padding-top: 15px;
-	padding-bottom: 30px;
-	text-align: center;
-	height: 20px;
-	font-size: 30px;
-	color: white;
+  flex-basis: 197px;
+  border: solid white;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  text-align: center;
+  height: 20px;
+  font-size: 30px;
+  color: white;
 }
 
 .container-third {
-	display: flex;
-	width: auto;
-	height: 150px;
-	flex-flow: row wrap;
-	align-content: flex-start;
-	padding: 0px 0px 0px 72px;
+  display: flex;
+  width: auto;
+  height: 150px;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  padding: 0px 0px 0px 72px;
 }
 
 .outside-section {
-	flex-basis: 97px;
-	border: solid white;
-	padding-top: 15px;
-	padding-bottom: 30px;
-	text-align: center;
-	height: 20px;
-	font-size: 30px;
-	color: white;
+  flex-basis: 97px;
+  border: solid white;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  text-align: center;
+  height: 20px;
+  font-size: 30px;
+  color: white;
 }
 
 .rhomb-red {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	background-color: red;
-	border: solid white;
-	transform: rotate(45deg);
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border: solid white;
+  transform: rotate(45deg);
   color: transparent;
 }
 
 .rhomb-black {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	background-color: black;
-	border: solid white;
-	transform: rotate(45deg);
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border: solid white;
+  transform: rotate(45deg);
   color: transparent;
 }
 
 .value {
-	transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .disabled-link {
@@ -630,4 +632,52 @@ h1 {
   align-items: center;
   justify-content: center;
   display: flex;
+}
+
+.home_points {
+  width: 50px;
+  margin-right: 30px;
+}
+
+.home_points > p {
+  font-size: 16px;
+}
+
+.blackjacko {
+  font-size: 50px;
+}
+
+.jackbutton {
+  width: 170px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Baskerville";
+  letter-spacing: 1px;
+  background: #bea891;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+  border: 3px solid #81a28f;
+}
+
+.jackbutton:hover {
+  box-shadow: 0 2px 5px 0 #81a28f;
+}
+
+button {
+  width: 140px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Baskerville";
+  letter-spacing: 1px;
+  background: #bea891;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+  border: 3px solid #81a28f;
+  margin: 20px 8px 20px;
 }
