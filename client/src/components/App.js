@@ -55,7 +55,7 @@ function App() {
             <Roulette />
           </Route>
           <Route exact path="/blackjack">
-            <Blackjack user={user} reloadUser={getUser} />
+            <Blackjack user={user} setUser={setUser} />
           </Route>
           <Route exact path="/cal">
             <Cal />
@@ -64,7 +64,7 @@ function App() {
             <Casino isLoggedIn={!!user}/>
           </Route>
           <Route exact path="/experiences">
-            <Experiences items={items} />
+            <Experiences items={items} user={user} setUser={setUser}/>
           </Route>
           <Route exact path="/signup">
             <Signup onLogin={setUser} />

@@ -22,7 +22,7 @@ puts "🌱 Seeding spices..."
   Item.create(name: "Get in the Ring with Hasbulla", description: "Small man with a mighty uppercut!", price: 825, image: "https://manofmany.com/wp-content/uploads/2021/06/Hasbulla-Magomedov-4-1200x800.jpg")
   Item.create(name: "Year of Scientology Membership", description: "Find that spirituality you've been missing!", price: 200, image: "https://img.thedailybeast.com/image/upload/v1492108518/articles/2016/10/26/tom-cruise-breaks-silence-on-scientology-it-s-a-beautiful-religion/161026-zimmerman-cruise-scientology-tease2_feyagf.jpg")
   Item.create(name: "Cooking Lesson with Guy Fieri", description: "Meet the Guy!", price: 900, image: "https://media.gq.com/photos/59dfc6d9d61cb80476584e18/master/pass/guy-fieiri-flame.jpg")
-  Item.create(name: "$100 Gift Card AMEX", description: "Do whatever you want!", price: 300, image: "https://milestomemories.com/wp-content/uploads/2015/08/amexgc.png")
+  Item.create(name: "$100 Gift Card AMEX", description: "Do whatever you want!", price: 100, image: "https://milestomemories.com/wp-content/uploads/2015/08/amexgc.png")
 
 
 values = (0..36).to_a

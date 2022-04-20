@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import { v4 as uuid } from 'uuid';
 import timeout from "../timeout";
 
-function Blackjack({user, reloadUser}) {
+function Blackjack({user, setUser}) {
   const faceDownCard = "https://opengameart.org/sites/default/files/card%20back%20red.png";
   const [deckId, setDeckId] = useState(null);
   const [cards, setCards] = useState({playerCards: [], dealerCards: []});
@@ -79,8 +79,8 @@ function Blackjack({user, reloadUser}) {
         body: JSON.stringify({points: user.points + bet})
       })
       .then(response => response.json())
-      .then(() => {
-        reloadUser();
+      .then((user) => {
+        setUser({...user, points: user.points});
         setBet(0);
       })
     }
