@@ -7,6 +7,7 @@ import Slots from "./games/Slots";
 import Roulette from "./games/Roulette";
 import Blackjack from "./games/Blackjack";
 import Experiences from "./Experiences";
+import Cal from "./Cal";
 import Casino from "./Casino";
 import Signup from "./account/Signup";
 import Login from "./account/Login";
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route exact path="/blackjack">
             <Blackjack />
+          </Route>
+          <Route exact path="/cal">
+            <Cal />
           </Route>
           <Route exact path="/casino">
             <Casino />

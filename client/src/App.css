@@ -31,7 +31,7 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  font-size: 50px;
+  font-size: 36px;
 }
 
 .logo {
@@ -41,11 +41,10 @@
 
 .image {
   position: absolute;
-  margin: auto;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
+  left: 70px;
+  top: 320px;
+  height: 60%;
+  width: 25%;
   z-index: -3;
 }
 .about {
@@ -58,6 +57,8 @@
   margin: 0;
   overflow: hidden;
   margin-right: 3%;
+  justify-content: center;
+  margin-top: 0.5%;
 }
 
 .navbar2 {
@@ -65,7 +66,10 @@
   top: 0%;
   position: absolute;
   right: 0;
-  margin-left: 3%;
+  margin-top: 1%;
+}
+
+.navbar2 li {
 }
 
 .card {
@@ -98,6 +102,7 @@ a:visited {
 a {
   text-decoration: none;
 }
+
 .casino {
   background-size: cover;
 }
@@ -214,7 +219,7 @@ b {
 }
 
 p {
-  font-size: 20px;
+  font-size: 45px;
   color: #bea891;
 }
 
@@ -229,7 +234,7 @@ p {
   color: #81a28f;
 }
 
-span {
+.span {
   color: #81a28f;
   font-size: 32px;
   font-weight: bold;
@@ -294,8 +299,8 @@ span {
   cursor: pointer;
   font-size: 20px;
   font-family: "Baskerville", cursive;
-  letter-spacing: 5px;
-  background: #81a28f;
+  letter-spacing: 2px;
+  background: #bea891;
   border: 1px solid black;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
   transition: 500ms;
@@ -321,12 +326,12 @@ span {
 
 .delete {
   width: 140px;
-  height: 50px;
+  height: 30px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   font-family: "Baskerville", cursive;
-  letter-spacing: 3px;
-  background: #81a28f;
+  letter-spacing: 2px;
+  background: #bea891;
   border: 1px solid black;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
   transition: 500ms;
@@ -337,16 +342,168 @@ span {
 }
 .logout {
   width: 140px;
-  height: 50px;
+  height: 30px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   font-family: "Baskerville", cursive;
-  letter-spacing: 3px;
-  background: #81a28f;
+  letter-spacing: 2px;
+  background: #bea891;
   border: 1px solid black;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
   transition: 500ms;
   border-radius: 6px;
   display: block;
   margin: auto;
+}
+
+.para {
+  font-size: 20px;
+}
+
+.rbc-toolbar .rbc-toolbar-label {
+  font-size: 26px;
+  font-family: "Baskerville";
+  margin: auto;
+}
+
+.rbc-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.rbc-calendar {
+  background-color: #bea891;
+  width: 95%;
+  margin: auto;
+  margin-top: 2%;
+}
+
+h1 {
+  color: #bea891;
+}
+
+.slot {
+  border: 3px solid #81a28f;
+  padding: 35px;
+  box-shadow: #000 1px 1px 1px;
+  background-color: #bea891;
+  font-size: 100px;
+  border-radius: 6px;
+}
+.slot:hover {
+  box-shadow: 0 8px 16px 0 #81a28f;
+  box-shadow: 0 2px 5px 0 #81a28f;
+  border-radius: 6px;
+}
+
+.credit-board {
+  border: 3px solid #81a28f;
+  margin: 10px auto;
+  display: block;
+  width: 300px;
+  padding: 10px;
+  background-color: #bea891;
+  border-radius: 6px;
+}
+
+.slot-container {
+  display: flex;
+  width: 500px;
+  margin: 20px auto;
+  justify-content: space-around;
+}
+
+.start {
+  width: 170px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Baskerville";
+  letter-spacing: 1px;
+  background: #bea891;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+  border: 3px solid #81a28f;
+}
+
+.credits {
+  width: 80px;
+  height: 50px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: "Baskerville";
+  letter-spacing: 1px;
+  background: #bea891;
+  border: 1px solid black;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+  border-radius: 6px;
+  border: 3px solid #81a28f;
+}
+
+.credits:hover {
+  box-shadow: 0 2px 5px 0 #81a28f;
+}
+
+.start:hover {
+  box-shadow: 0 2px 5px 0 #81a28f;
+}
+
+h1 {
+  font-family: "Baskerville";
+  font-weight: normal;
+}
+
+.navvy {
+  font-size: 16px;
+  color: #bea891;
+}
+
+.account {
+  font-size: 32px;
+}
+
+.p2e {
+  font-size: 150px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.p3e {
+  font-size: 150px;
+  position: fixed;
+  top: 140px;
+  left: 200px;
+}
+
+.first {
+  width: 100%;
+  overflow-wrap: normal;
+}
+
+.type {
+  font-size: 150px;
+  top: 280px;
+  left: 400px;
+  position: fixed;
+  overflow-wrap: normal;
+}
+
+.p4e {
+  font-size: 150px;
+  top: 420px;
+  left: 600px;
+  position: fixed;
+}
+
+.lighty {
+  color: #81a28f;
 }

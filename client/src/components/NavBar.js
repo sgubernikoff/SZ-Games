@@ -34,7 +34,7 @@ function NavBar({ isLoggedIn }) {
           className="nav-element"
         >
           {" "}
-          <p>Home</p>{" "}
+          <p className="navvy">Home</p>{" "}
         </NavLink>
         <NavLink
           exact
@@ -46,11 +46,23 @@ function NavBar({ isLoggedIn }) {
           className="nav-element"
         >
           {" "}
-          <p>About</p>{" "}
+          <p className="navvy">About</p>{" "}
+        </NavLink>
+        <NavLink
+          exact
+          to="/cal"
+          style={linkStyles}
+          activeStyle={{
+            textDecoration: "underline",
+          }}
+          className="nav-element"
+        >
+          {" "}
+          <p className="navvy">Calendar</p>{" "}
         </NavLink>
 
         <a className="header" href="/">
-          caSZino
+          earn a-way
         </a>
       </nav>
       <nav className="navbar2">
@@ -64,7 +76,7 @@ function NavBar({ isLoggedIn }) {
           className="nav-element"
         >
           {" "}
-          <p>Casino</p>{" "}
+          <p className="navvy">Casino</p>{" "}
         </NavLink>
         <NavLink
           exact
@@ -76,7 +88,7 @@ function NavBar({ isLoggedIn }) {
           className="nav-element"
         >
           {" "}
-          <p>Experiences</p>{" "}
+          <p className="navvy">Experiences</p>{" "}
         </NavLink>
         <NavLink
           exact
@@ -88,7 +100,7 @@ function NavBar({ isLoggedIn }) {
           className="nav-element"
         >
           {" "}
-          <p>Account</p>{" "}
+          <p className="navvy">Account</p>{" "}
         </NavLink>
       </nav>
     </div>
