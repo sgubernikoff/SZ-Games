@@ -685,3 +685,9 @@ button {
   border: 3px solid #81a28f;
   margin: 20px 8px 20px;
 }
+
+.chipz {
+  align-self: center;
+  width: 200px;
+  margin-top: 20px;
+}

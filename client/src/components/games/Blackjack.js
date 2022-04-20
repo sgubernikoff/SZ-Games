@@ -335,7 +335,13 @@ function Blackjack({ user, setUser }) {
   } else {
     return (
       <div>
-        <p className="blackjacko">blackjack</p>
+        {/* <p className="blackjacko">blackjack</p> */}
+        <div>
+          <img
+            className="chipz"
+            src="https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/2020/03/spinRight-256.gif"
+          />
+        </div>
         <button className="jackbutton" onClick={getDeck}>
           Start game
         </button>
