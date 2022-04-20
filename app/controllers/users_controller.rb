@@ -19,7 +19,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
     end
 
     def update
-        user = User.find(params[:id])
+        user = User.find(session[:user_id])
         user.update!(user_params)
         render json: user
     end
