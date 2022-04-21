@@ -51,7 +51,7 @@ function App() {
             <Slots user={user} setUser={setUser} />
           </Route>
           <Route exact path="/roulette">
-            <Roulette />
+            <Roulette user={user} setUser={setUser}/>
           </Route>
           <Route exact path="/blackjack">
             <Blackjack user={user} setUser={setUser} />

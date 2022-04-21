@@ -32,7 +32,7 @@ values = (0..36).to_a
 
 def getThird(value)
   if value == 0
-    "0"
+    "no"
   elsif value <= 12
     "doz1"
   elsif value <= 24
@@ -44,7 +44,7 @@ end
 
 def getHalf(value)
   if value == 0
-    "0"
+    "no"
   elsif value <=18
     "half1"
   else
@@ -54,7 +54,7 @@ end
 
 def getParity(value)
   if value == 0
-    "0"
+    "no"
   elsif value.even?
     "even"
   else
@@ -65,7 +65,7 @@ end
 def getColor(value)
   red_nums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
   if value == 0
-    "0"
+    "green"
   elsif red_nums.include?(value)
     "red"
   else
@@ -75,7 +75,7 @@ end
 
 def getRow(value)
   if value == 0
-    "0"
+    "no"
   elsif (value + 2) % 3 == 0
     "row1"
   elsif (value + 1) % 3 == 0
@@ -88,7 +88,7 @@ end
 
 values.each do |value|
   Spin.create(
-    value: value,
+    value: value.to_s,
     third: getThird(value),
     half: getHalf(value),
     parity: getParity(value),
