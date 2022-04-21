@@ -24,6 +24,8 @@ function Account({ user, onLogin }) {
     });
   }
 
+  console.log(user);
+
   function deleteAccount() {
     fetch("users/0", { method: "DELETE" }).then((r) => {
       if (r.ok) {
