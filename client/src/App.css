@@ -745,8 +745,8 @@ button {
 
 .cardo img {
   margin-top: 5px;
-  width: 400px;
-  height: 240px;
+  width: 50%;
+  height: auto;
   border: 0.5px solid white;
   border-radius: 4px;
 }
