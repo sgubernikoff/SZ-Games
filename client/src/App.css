@@ -699,8 +699,8 @@ button {
   position: absolute;
   left: 70px;
   top: 320px;
-  height: 60%;
-  width: 25%;
+  height: 620px;
+  width: 390px;
   z-index: -3;
 }
 .homepage {

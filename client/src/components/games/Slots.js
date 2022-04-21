@@ -10,7 +10,6 @@ class Slots extends Component {
     this.state = {
       credits: 100,
       creditPayout: 0,
-      highestScore: 0,
       gameActive: false,
       gameOver: false,
       slotDatum: ["🎰", "🎰", "🎰"],
@@ -83,7 +82,7 @@ class Slots extends Component {
   }
 
   didWin(data, multiplierAmount) {
-    // console.log(user);
+    console.log(this.props.user.points);
     let isWin = false;
     let payOut = 0;
     let newCreditCount = this.state.credits;
@@ -91,45 +90,48 @@ class Slots extends Component {
       isWin = true;
       payOut = 25 * multiplierAmount;
       newCreditCount += payOut;
-      // fetch("/users/0", {
-      //   method: "PATCH",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ points: user.points + payOut }),
-      // })
-      //   .then((response) => response.json())
-      //   .then((user) => {
-      //     setUser({ ...user, points: user.points });
-      //   });
+      fetch("/users/0", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          points: this.props.user.points + payOut * multiplierAmount,
+        }),
+      })
+        .then((response) => response.json())
+        .then((user) => {
+          this.props.setUser({
+            ...this.props.user,
+            points: this.props.user.points,
+          });
+        });
     } else if (data[0] === data[1]) {
       isWin = true;
       payOut = 10 * multiplierAmount;
       newCreditCount += payOut;
-      // fetch("/users/0", {
-      //   method: "PATCH",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ points: user.points + payOut }),
-      // })
-      //   .then((response) => response.json())
-      //   .then((user) => {
-      //     setUser({ ...user, points: user.points });
-      //   });
+      fetch("/users/0", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          points: this.props.user.points + payOut * multiplierAmount,
+        }),
+      })
+        .then((response) => response.json())
+        .then((user) => {
+          this.props.setUser({
+            ...this.props.user,
+            points: this.props.user.points,
+          });
+        });
     }
 
     if (newCreditCount <= 0) {
-      return this.setState({
-        gameOver: true,
-        gameActive: false,
-      });
+      return window.location.reload();
     }
 
     this.setState({
       credits: newCreditCount,
       creditPayout: payOut,
       isWin: isWin,
-      highestScore:
-        this.state.highestScore > newCreditCount
-          ? this.state.highestScore
-          : newCreditCount,
     });
   }
 
@@ -183,7 +185,6 @@ class Slots extends Component {
           </div>
         )}
         {this.state.isWin && <p>You Won {this.state.creditPayout}</p>}
-        <p>Highest Score: {this.state.highestScore}</p>
       </div>
     );
   }
