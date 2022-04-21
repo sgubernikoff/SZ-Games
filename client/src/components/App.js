@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar isLoggedIn={!!user} user={user}/>
+        <NavBar isLoggedIn={!!user} user={user} />
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -61,10 +61,10 @@ function App() {
             <Cal />
           </Route>
           <Route exact path="/casino">
-            <Casino isLoggedIn={!!user}/>
+            <Casino isLoggedIn={!!user} />
           </Route>
           <Route exact path="/experiences">
-            <Experiences items={items} user={user} setUser={setUser}/>
+            <Experiences items={items} user={user} setUser={setUser} />
           </Route>
           <Route exact path="/signup">
             <Signup onLogin={setUser} />

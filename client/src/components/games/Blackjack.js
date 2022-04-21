@@ -114,13 +114,12 @@ function Blackjack({ user, setUser }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ points: user.points + bet }),
       })
-      .then(response => response.json())
-      .then((user) => {
-        setUser({...user, points: user.points});
-        setBet(0);
-      })
-    }
-    else {
+        .then((response) => response.json())
+        .then((user) => {
+          setUser({ ...user, points: user.points });
+          setBet(0);
+        });
+    } else {
       setBet(0);
     }
   }
@@ -161,15 +160,15 @@ function Blackjack({ user, setUser }) {
     ) {
       return "You drew 5 cards without going over 21. You win!";
     } else if (playerCardsValue > 21) {
-      return "You went over 21! You lose!";
+      return "You bust! You lose!";
     } else if (dealerCardsValue > 21) {
-      return "Dealer went over 21! You win!";
+      return "Dealer bust! You win!";
     } else if (playerCardsValue === dealerCardsValue) {
       return "It's a tie!";
     } else if (playerCardsValue > dealerCardsValue) {
-      return "Your cards beat the dealer's. You win!";
+      return "You beat the dealer. You win!";
     } else {
-      return "The dealer's cards beat yours. You lose!";
+      return "You lose!";
     }
   }
 

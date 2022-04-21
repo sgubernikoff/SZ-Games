@@ -39,14 +39,6 @@
   width: auto;
 }
 
-.image {
-  position: absolute;
-  left: 70px;
-  top: 320px;
-  height: 60%;
-  width: 25%;
-  z-index: -3;
-}
 .about {
   margin: auto;
   text-align: center;
@@ -690,4 +682,67 @@ button {
   align-self: center;
   width: 200px;
   margin-top: 20px;
+}
+
+.image2 {
+  position: absolute;
+  right: 100px;
+  bottom: 370px;
+  height: 60%;
+  width: 25%;
+  z-index: -3;
+  padding-left: 70px;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  left: 70px;
+  top: 320px;
+  height: 60%;
+  width: 25%;
+  z-index: -3;
+}
+.homepage {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.rec.rec-arrow {
+  color: #81a28f;
+  background-color: #bea891;
+  margin: 200px;
+}
+
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.rec.rec-pagination {
+  display: none;
+}
+
+.rec.rec-arrow:hover:enabled {
+  background-color: #81a28f;
+  color: #bea891;
+}
+
+.rec.rec-arrow:focus:enabled {
+  color: #81a28f;
+  background-color: #bea891;
+  margin: 200px;
+}
+
+.cardo img {
+  margin-top: 5px;
+  width: 400px;
+  height: 240px;
+  border: 0.5px solid white;
+  border-radius: 4px;
+}
+
+.purchase_name {
+  font-size: 26px;
+  font-style: italic;
 }

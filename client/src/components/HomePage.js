@@ -1,9 +1,10 @@
 import React from "react";
 import pic from "./pic.png";
+import pic2 from "./pic2.jpeg";
 
 function HomePage() {
   return (
-    <div>
+    <div className="homepage">
       <div className="first">
         <h1 className="p2e">
           A <span className="lighty">MODERN</span>
@@ -15,6 +16,7 @@ function HomePage() {
         </h1>
       </div>
       <img className="image" src={pic} />
+      {/* <img className="image2" src={pic2} /> */}
     </div>
   );
 }
