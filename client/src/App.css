@@ -572,7 +572,7 @@ h1 {
   flex-basis: 197px;
   border: solid white;
   padding-top: 15px;
-  padding-bottom: 30px;
+  padding-bottom: 34px;
   text-align: center;
   height: 20px;
   font-size: 30px;
@@ -586,6 +586,7 @@ h1 {
   flex-flow: row wrap;
   align-content: flex-start;
   padding: 0px 0px 0px 72px;
+  margin-bottom: -40px;
 }
 
 .outside-section {
@@ -621,6 +622,14 @@ h1 {
 
 .value {
   transform: rotate(-90deg);
+}
+
+.no-text {
+  color: transparent;
+}
+
+.botton-table {
+  transform: rotate(0deg);
 }
 
 .disabled-link {
@@ -690,4 +699,33 @@ button {
   align-self: center;
   width: 200px;
   margin-top: 20px;
+}
+
+.current-chip {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.table-chip {
+  width: 42px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.bet-info {
+  margin-top: 0px;
+}
+
+.side-button-container {
+  position: absolute;
+  left: 15%;
+}
+
+.roulette-board {
+  margin-left: 25%;
+  width: 75%;
 }

@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 2022_04_19_132815) do
   end
 
   create_table "spins", force: :cascade do |t|
-    t.integer "value"
-    t.integer "third"
-    t.integer "half"
+    t.string "value"
+    t.string "third"
+    t.string "half"
     t.string "parity"
     t.string "color"
-    t.integer "row"
+    t.string "row"
   end
 
   create_table "users", force: :cascade do |t|

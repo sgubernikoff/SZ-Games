@@ -2,12 +2,15 @@ import { React, useState } from "react";
 import { v4 as uuid } from "uuid";
 import timeout from "../timeout";
 
+const chips = [{value: "10", image: "./black-chip.png"}, {value: "50", image: "./black-chip.png"}, {value: "100", image: "./black-chip.png"}, {value: "500", image: "./black-chip.png"}]
+
 function Blackjack({ user, setUser }) {
   const faceDownCard =
     "https://opengameart.org/sites/default/files/card%20back%20red.png";
   const [deckId, setDeckId] = useState(null);
   const [cards, setCards] = useState({ playerCards: [], dealerCards: [] });
   const [endMode, setEndMode] = useState(false);
+  const [credits, setCredits] = useState(2500);
   const [bet, setBet] = useState(0);
 
   function getDeck() {
@@ -55,7 +58,8 @@ function Blackjack({ user, setUser }) {
     return cardsValue;
   }
 
-  async function hitDealer() {
+  function hitDealer() {
+    setEndMode(true);
     if (dealerCardsValue <= 16) {
       fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`)
         .then((response) => response.json())
@@ -91,7 +95,11 @@ function Blackjack({ user, setUser }) {
               ],
             });
           }
+          closeGame();
         });
+    }
+    else {
+      closeGame();
     }
   }
 
@@ -106,8 +114,7 @@ function Blackjack({ user, setUser }) {
       });
   }
 
-  async function closeGame() {
-    setEndMode(true);
+  function closeGame() {
     if (winMessage().includes("win")) {
       fetch("/users/0", {
         method: "PATCH",
@@ -117,18 +124,12 @@ function Blackjack({ user, setUser }) {
       .then(response => response.json())
       .then((user) => {
         setUser({...user, points: user.points});
-        setBet(0);
       })
     }
-    else {
+    else if (winMessage().includes("lose")) {
+      setCredits(credits - bet);
       setBet(0);
     }
-  }
-
-  async function stand() {
-    hitDealer();
-    await timeout(400);
-    closeGame();
   }
 
   let playerCardsValue = getHandValue(cards.playerCards);
@@ -139,12 +140,13 @@ function Blackjack({ user, setUser }) {
     ((playerCardsValue === 21 && cards.playerCards.length === 2) ||
       cards.dealerCards.length >= 5)
   ) {
+    setEndMode(true);
     closeGame();
   } else if (
     !endMode &&
     (playerCardsValue >= 21 || cards.playerCards.length >= 5)
   ) {
-    stand();
+    hitDealer();
   }
 
   function winMessage() {
@@ -179,7 +181,25 @@ function Blackjack({ user, setUser }) {
   }
 
   function addToBet(e) {
-    setBet(bet + parseInt(e.target.name));
+    if (credits >= (bet + parseInt(e.target.name))) {
+      setBet(bet + parseInt(e.target.name));
+    }
+  }
+
+  function endGame() {
+    setDeckId(null)
+    setCards({ playerCards: [], dealerCards: [] });
+    setEndMode(false);
+    setCredits(2500);
+    setBet(0);
+  }
+
+  function doubleBet() {
+    if (credits >= bet*2) {
+      setBet(bet*2);
+      hitPlayer();
+      
+    }
   }
 
   if (deckId) {
@@ -206,6 +226,7 @@ function Blackjack({ user, setUser }) {
             })}
           </div>
           <br></br>
+          <div className="side-button-container">
           <button
             className={
               endMode ||
@@ -217,7 +238,7 @@ function Blackjack({ user, setUser }) {
             onClick={hitPlayer}
           >
             Hit
-          </button>
+          </button><br></br>
           <button
             className={
               endMode ||
@@ -226,10 +247,11 @@ function Blackjack({ user, setUser }) {
                 ? "hidden"
                 : ""
             }
-            onClick={stand}
+            onClick={hitDealer}
           >
             Stand
           </button>
+          </div>
         </div>
         <div>
           <p>
@@ -271,64 +293,18 @@ function Blackjack({ user, setUser }) {
             })}
           </div>
         </div>
-        <button
-          onClick={dealInit}
-          className={cards.playerCards.length > 0 || endMode ? "hidden" : ""}
-        >
-          Deal
-        </button>
         {endMode && cards.dealerCards.length > 0 ? <p>{winMessage()}</p> : null}
-        {endMode && cards.dealerCards.length > 0 ? (
-          <button onClick={resetGame}>Play again</button>
-        ) : null}
-        <div
-          className={
-            cards.playerCards.length >= 2 && cards.dealerCards.length >= 2
-              ? "chip-container"
-              : "hidden"
-          }
-        >
-          <img
-            onClick={addToBet}
-            name={10}
-            src="./black-chip.png"
-            alt="chip"
-            className="chip"
-          />
-          <p>10</p>
-          <img
-            onClick={addToBet}
-            name={50}
-            src="./black-chip.png"
-            alt="chip"
-            className="chip"
-          />
-          <p>50</p>
-          <img
-            onClick={addToBet}
-            name={100}
-            src="./black-chip.png"
-            alt="chip"
-            className="chip"
-          />
-          <p>100</p>
-          <img
-            onClick={addToBet}
-            name={500}
-            src="./black-chip.png"
-            alt="chip"
-            className="chip"
-          />
-          <p>500</p>
-        </div>
-        <p
-          className={
-            cards.playerCards.length >= 2 && cards.dealerCards.length >= 2
-              ? ""
-              : "hidden"
-          }
-        >
-          Bet amount: {bet} <button onClick={() => setBet(0)}>Clear bet</button>
+        <button onClick={endMode ? resetGame : dealInit} className={(cards.playerCards.length && !endMode) > 0 ? "hidden" : ""}>{endMode ? "Redeal" : "Deal"}</button>
+        {endMode ? <button onClick={endGame}>End game</button> : null}
+        <div className={(cards.playerCards.length > 0 && !endMode) ? "disabled-link chip-container" : "chip-container"}>
+        {
+          chips.map(chip => {
+            return <div key={uuid()}><img onClick={addToBet} name={chip.value} src={chip.image} alt="chip" className="chip"/></div>
+          })
+        }
+      </div>
+        <p className="bet-info">
+          Bet amount: {bet} <button onClick={(cards.playerCards.length > 0 && !endMode) ? doubleBet : () => setBet(0)} className={(cards.playerCards.length > 2 && !endMode) ? "disabled-link" : ""} >{(cards.playerCards.length > 0 && !endMode) ? "Double bet": "Clear bet"}</button> Credits: ${credits - bet}
         </p>
       </div>
     );
@@ -340,7 +316,7 @@ function Blackjack({ user, setUser }) {
           <img
             className="chipz"
             src="https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/2020/03/spinRight-256.gif"
-          />
+          alt="spinning chip"/>
         </div>
         <button className="jackbutton" onClick={getDeck}>
           Start game

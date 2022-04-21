@@ -29,29 +29,29 @@ values = (0..36).to_a
 
 def getThird(value)
   if value == 0
-    0
+    "0"
   elsif value <= 12
-    1
+    "doz1"
   elsif value <= 24
-    2
+    "doz2"
   else
-    3
+    "doz3"
   end
 end
 
 def getHalf(value)
   if value == 0
-    0
+    "0"
   elsif value <=18
-    1
+    "half1"
   else
-    2
+    "half2"
   end
 end
 
 def getParity(value)
   if value == 0
-    "zero"
+    "0"
   elsif value.even?
     "even"
   else
@@ -62,7 +62,7 @@ end
 def getColor(value)
   red_nums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
   if value == 0
-    "green"
+    "0"
   elsif red_nums.include?(value)
     "red"
   else
@@ -72,13 +72,13 @@ end
 
 def getRow(value)
   if value == 0
-    0
+    "0"
   elsif (value + 2) % 3 == 0
-    1
+    "row1"
   elsif (value + 1) % 3 == 0
-    2
+    "row2"
   else
-    3
+    "row3"
   end
 end
 
