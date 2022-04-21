@@ -83,6 +83,7 @@ class Slots extends Component {
   }
 
   didWin(data, multiplierAmount) {
+    // console.log(user);
     let isWin = false;
     let payOut = 0;
     let newCreditCount = this.state.credits;
@@ -90,10 +91,28 @@ class Slots extends Component {
       isWin = true;
       payOut = 25 * multiplierAmount;
       newCreditCount += payOut;
+      // fetch("/users/0", {
+      //   method: "PATCH",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ points: user.points + payOut }),
+      // })
+      //   .then((response) => response.json())
+      //   .then((user) => {
+      //     setUser({ ...user, points: user.points });
+      //   });
     } else if (data[0] === data[1]) {
       isWin = true;
       payOut = 10 * multiplierAmount;
       newCreditCount += payOut;
+      // fetch("/users/0", {
+      //   method: "PATCH",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ points: user.points + payOut }),
+      // })
+      //   .then((response) => response.json())
+      //   .then((user) => {
+      //     setUser({ ...user, points: user.points });
+      //   });
     }
 
     if (newCreditCount <= 0) {

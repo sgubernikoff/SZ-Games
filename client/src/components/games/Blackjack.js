@@ -294,31 +294,31 @@ function Blackjack({ user, setUser }) {
             alt="chip"
             className="chip"
           />
-          <p>10</p>
+          <p className="chip_value">10</p>
+          <img
+            onClick={addToBet}
+            name={25}
+            src="./brown-chip.png"
+            alt="chip"
+            className="chip"
+          />
+          <p className="chip_value">25</p>
           <img
             onClick={addToBet}
             name={50}
-            src="./black-chip.png"
+            src="./green-chip.png"
             alt="chip"
             className="chip"
           />
-          <p>50</p>
+          <p className="chip_value">50</p>
           <img
             onClick={addToBet}
             name={100}
-            src="./black-chip.png"
+            src="./greener-chip.png"
             alt="chip"
             className="chip"
           />
-          <p>100</p>
-          <img
-            onClick={addToBet}
-            name={500}
-            src="./black-chip.png"
-            alt="chip"
-            className="chip"
-          />
-          <p>500</p>
+          <p className="chip_value">100</p>
         </div>
         <p
           className={

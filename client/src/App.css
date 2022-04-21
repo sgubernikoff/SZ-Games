@@ -746,3 +746,7 @@ button {
   font-size: 26px;
   font-style: italic;
 }
+
+.chip_value {
+  margin: 8px;
+}

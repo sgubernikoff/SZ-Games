@@ -50,24 +50,6 @@ function NavBar({ isLoggedIn, user }) {
         </NavLink>
         <NavLink
           exact
-          to="/cal"
-          style={linkStyles}
-          activeStyle={{
-            textDecoration: "underline",
-          }}
-          className="nav-element"
-        >
-          {" "}
-          <p className="navvy">Calendar</p>{" "}
-        </NavLink>
-        <a className="header" href="/">
-          earn a-way
-        </a>
-      </nav>
-
-      <nav className="navbar2">
-        <NavLink
-          exact
           to="/casino"
           style={linkStyles}
           activeStyle={{
@@ -78,6 +60,12 @@ function NavBar({ isLoggedIn, user }) {
           {" "}
           <p className="navvy">Casino</p>{" "}
         </NavLink>
+        <a className="header" href="/">
+          earn a-way
+        </a>
+      </nav>
+
+      <nav className="navbar2">
         <NavLink
           exact
           to="/experiences"

@@ -1,22 +1,26 @@
-import {React, useState} from 'react'
+import { React, useState } from "react";
 
 function Roulette() {
   const [spin, setSpin] = useState(null);
 
   function handleTableClick(e) {
-    if ([e.target.className, e.target.parentNode.className].join(' ').includes("clickable")) {
+    if (
+      [e.target.className, e.target.parentNode.className]
+        .join(" ")
+        .includes("clickable")
+    ) {
       console.log(e.target.textContent);
     }
   }
 
   function spinWheel() {
-    fetch('/spins/0')
-    .then(response => response.json())
-    .then(spinData => setSpin(spinData))
+    fetch("/spins/0")
+      .then((response) => response.json())
+      .then((spinData) => setSpin(spinData));
   }
 
   function addBet(e) {
-    console.log(parseInt(e.target.name))
+    console.log(parseInt(e.target.name));
   }
 
   return (
@@ -135,13 +139,19 @@ function Roulette() {
             <div className="value">36</div>
           </div>
           <div className="clickable column-item">
-            <div className="value">2-1<p className="hidden"> row1</p></div>
+            <div className="value">
+              2-1<p className="hidden"> row1</p>
+            </div>
           </div>
           <div className="clickable column-item">
-            <div className="value">2-1<p className="hidden"> row2</p></div>
+            <div className="value">
+              2-1<p className="hidden"> row2</p>
+            </div>
           </div>
           <div className="clickable column-item">
-            <div className="value">2-1<p className="hidden"> row3</p></div>
+            <div className="value">
+              2-1<p className="hidden"> row3</p>
+            </div>
           </div>
         </div>
         <div className="container-second">
@@ -178,13 +188,41 @@ function Roulette() {
       </div>
       <button onClick={spinWheel}>Spin</button>
       <div className="chip-container">
-        <img onClick={addBet} name={10} src="./black-chip.png" alt="chip" className="chip"/><p>10</p>
-        <img onClick={addBet} name={50} src="./black-chip.png" alt="chip" className="chip"/><p>50</p>
-        <img onClick={addBet} name={100} src="./black-chip.png" alt="chip" className="chip"/><p>100</p>
-        <img onClick={addBet} name={500} src="./black-chip.png" alt="chip" className="chip"/><p>500</p>
+        <img
+          onClick={addBet}
+          name={10}
+          src="./black-chip.png"
+          alt="chip"
+          className="chip"
+        />
+        <p className="chip_value">10</p>
+        <img
+          onClick={addBet}
+          name={25}
+          src="./brown-chip.png"
+          alt="chip"
+          className="chip"
+        />
+        <p className="chip_value">25</p>
+        <img
+          onClick={addBet}
+          name={50}
+          src="./green-chip.png"
+          alt="chip"
+          className="chip"
+        />
+        <p className="chip_value">50</p>
+        <img
+          onClick={addBet}
+          name={100}
+          src="./greener-chip.png"
+          alt="chip"
+          className="chip"
+        />
+        <p className="chip_value">100</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Roulette
+export default Roulette;
