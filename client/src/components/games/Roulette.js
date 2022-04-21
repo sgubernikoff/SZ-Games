@@ -1,18 +1,21 @@
 import {React, useState} from 'react';
 import { v4 as uuid } from "uuid";
+import timeout from "../timeout";
 
 const chips = [{value: "10", image: "./black-chip.png"}, {value: "50", image: "./brown-chip.png"}, {value: "100", image: "./green-chip.png"}, {value: "500", image: "./greener-chip.png"}]
 
-function Roulette() {
+function Roulette({user, setUser}) {
   const [spin, setSpin] = useState(null);
   const [currentChip, setCurrentChip] = useState(null);
   const [bets, setBets] = useState({});
-  const [credits, setCredits] = useState(2500)
+  const [credits, setCredits] = useState(2500);
 
   function spinWheel() {
     fetch("/spins/0")
       .then((response) => response.json())
-      .then((spinData) => setSpin(spinData));
+      .then((spinData) => {
+        setSpin(spinData);
+      });
   }
 
   function getChip(e) {
@@ -51,10 +54,42 @@ function Roulette() {
     setBets(betsCopy);
   }
 
-  const betsTotal = Object.values(bets).reduce((a,b) => a+b, 0)
+  const betsTotal = Object.values(bets).reduce((a,b) => a+b, 0);
 
-  function calculateWinnings() {
-
+  async function calculateWinnings() {
+    await timeout(2000);
+    let winnings = 0;
+    if (Object.keys(bets).includes(spin.value)) {
+      winnings = winnings + bets[spin.value]*35;
+    }
+    if (Object.keys(bets).includes(spin.color)) {
+      winnings = winnings + bets[spin.color];
+    }
+    if (Object.keys(bets).includes(spin.half)) {
+      winnings = winnings + bets[spin.half];
+    }
+    if (Object.keys(bets).includes(spin.parity)) {
+      winnings = winnings + bets[spin.parity];
+    }
+    if (Object.keys(bets).includes(spin.row)) {
+      winnings = winnings + bets[spin.row]*2;
+    }
+    if (Object.keys(bets).includes(spin.third)) {
+      winnings = winnings + bets[spin.third]*2;
+    }
+    fetch("/users/0", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ points: user.points + winnings }),
+    })
+    .then(response => response.json())
+    .then((user) => {
+      setSpin(null);
+      setUser({...user, points: user.points});
+      setCredits(credits-betsTotal);
+      setBets(0);
+      setCurrentChip(null);
+    })
   }
 
   if (spin) {
@@ -63,7 +98,7 @@ function Roulette() {
 
   return (
     <div>
-      <div className="roulette-board" onClick={makeBet}>
+      <div className="roulette-board" onClick={spin ? null : makeBet}>
         <div className="container-first">
           <div name="0" className="clickable zero-item">
             {boardElement("value","0", "0")}
@@ -205,7 +240,6 @@ function Roulette() {
             {boardElement("botton-table","EVEN", "even")}
           </div>
           <div name="red" className="clickable outside-section">
-            {/* <div className="rhomb-red">red</div> */}
             {boardElement("rhomb-red","", "red")}
           </div>
           <div name="black" className="clickable outside-section">
@@ -228,6 +262,9 @@ function Roulette() {
         }
       </div>
       <p>Credits: ${credits - betsTotal}</p>
+      {
+        spin ? <p className={spin.color} >{spin.value}</p> : null
+      }
     </div>
   );
 }

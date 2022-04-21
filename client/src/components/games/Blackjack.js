@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import { v4 as uuid } from "uuid";
-import timeout from "../timeout";
 
 const chips = [{value: "10", image: "./black-chip.png"}, {value: "50", image: "./brown-chip.png"}, {value: "100", image: "./green-chip.png"}, {value: "500", image: "./greener-chip.png"}]
 
@@ -271,8 +270,8 @@ function Blackjack({ user, setUser }) {
               className="card"
               key={uuid()}
               src={
-                endMode ? cards.dealerCards[1].image
-                  : cards.dealerCards[1] ? faceDownCard : "./rectangle.jpeg"
+                cards.dealerCards[1] ? endMode ? cards.dealerCards[1].image : 
+                faceDownCard : "./rectangle.jpeg"
               }
               alt="card"
             ></img>
