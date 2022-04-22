@@ -7,7 +7,6 @@ function Account({ user, onLogin }) {
     ? user.items.map((item) => (
         <div key={item.name} className="back">
           <img src={item.image} alt="purchased item"></img>
-          <p className="redeem-button">Redeem</p>
           <p className="account">{item.name}</p>
           <p className="account">{item.price} 🪙</p>
         </div>

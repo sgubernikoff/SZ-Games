@@ -25,7 +25,7 @@ Item.create(name: "Dinner with the Founders", description: "Meal with the earn a
   Item.create(name: "Cooking Lesson with Guy Fieri", description: "Meet the Guy!", price: 900, image: "https://media.gq.com/photos/59dfc6d9d61cb80476584e18/master/pass/guy-fieiri-flame.jpg")
   Item.create(name: "$100 Gift Card AMEX", description: "Do whatever you want!", price: 100, image: "https://milestomemories.com/wp-content/uploads/2015/08/amexgc.png")
   Item.create(name: "Win a Cool T shirt", description: "", price: 75, image: "https://ctl.s6img.com/society6/img/T6p0xOOhGIhyD4mEsraMTZwF7Tc/w_1500/tshirts/men/greybg/white/~artwork,bg_FFFFFFFF,fw_3300,fh_5100,fx_12,fy_-315,iw_3300,ih_5100/s6-original-art-uploads/society6/uploads/misc/81615eb1a4064bfbaf1a217b662783d2/~~/mambo-number-five-tshirts.jpg")
-  Item.create(name: "Wine Tasting in Williamsburg", description: "Vino!", price: 420, image: "https://lh3.googleusercontent.com/ASnOUIHZQXvDUniTff01YUOvHe1nC_cvoGwSqqFmrOINAiafD-NdQRht8p4O5EHGbq6O8Y-xmvPJwix5O_s5tAvF5tTQxQ-cYJrZ2F__M1SOnkdG8j6p0J4dYOMNkNh54OxTQfuYDQ=w2400?source=screenshot.guru")
+  Item.create(name: "Wine Tasting in Williamsburg", description: "Vino!", price: 420, image: "https://bkwinery.com/content/uploads/2015/05/091812_0058.jpg")
 
 
 values = (0..36).to_a
