@@ -799,3 +799,22 @@ button {
 .green {
   color: green;
 }
+
+.exp > .purchased {
+  background: #746c65;
+}
+
+.redeem-button{
+  /* display: none; */
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 0px 0px 0px 10px;
+  text-align: center;
+  margin: 0;
+  padding: 4px;
+}

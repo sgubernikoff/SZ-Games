@@ -27,7 +27,7 @@ function ExperienceCard({ item, user, setUser }) {
       <h3>{item.name}</h3>
       <p>{item.price} 🪙</p>
       {
-        user && !user.items.map(item => item.id).includes(item.id) ? <button onClick={purchaseItem} className={user ? "" : "disabled-link"}>Purchase</button> : <button className="disabled-link">Purchased</button>
+        user ? <button onClick={purchaseItem} className={!user.items.map(item => item.id).includes(item.id) ? "" : "disabled-link purchased"}>{!user.items.map(item => item.id).includes(item.id) ? "Purchase" : "Purchased"}</button> : <button className="disabled-link">Purchase</button>
       }
     </div>
   );
