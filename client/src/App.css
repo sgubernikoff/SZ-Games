@@ -631,6 +631,8 @@ h1 {
 .chip {
   width: 70px;
   border-radius: 50%;
+  margin: 5px;
+  margin-top: 20px;
 }
 
 .chip-container {
@@ -778,9 +780,15 @@ button {
   margin-top: 0px;
 }
 
+/* .side-button-container {
+  position: relative;
+  display: inline;
+} */
+
 .side-button-container {
   position: absolute;
-  left: 15%;
+  float: right;
+  right: 20%;
 }
 
 .roulette-board {
@@ -788,14 +796,49 @@ button {
   width: 75%;
 }
 
+.ruley {
+  float: left;
+  left: 8.6%;
+  top: 16%;
+}
 .black {
   color: black;
+  position: absolute;
+  float: left;
+  left: 10%;
+  top: 16%;
+  font-size: 70px;
+  font-weight: bold;
+  animation: rotation 5s infinite linear;
 }
 
 .red {
   color: red;
+  position: absolute;
+  float: left;
+  left: 10%;
+  top: 16%;
+  font-size: 70px;
+  font-weight: bold;
+  animation: rotation 5s infinite linear;
 }
 
 .green {
   color: green;
+  position: absolute;
+  float: left;
+  left: 10%;
+  top: 16%;
+  font-size: 70px;
+  font-weight: bold;
+  animation: rotation 5s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
