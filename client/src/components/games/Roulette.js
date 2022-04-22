@@ -3,17 +3,17 @@ import { v4 as uuid } from "uuid";
 import timeout from "../timeout";
 
 const chips = [
-  { value: "10", image: "./black-chip.png" },
-  { value: "50", image: "./brown-chip.png" },
-  { value: "100", image: "./green-chip.png" },
-  { value: "500", image: "./greener-chip.png" },
+  { value: "5", image: "./black-chip.png" },
+  { value: "10", image: "./brown-chip.png" },
+  { value: "25", image: "./green-chip.png" },
+  { value: "50", image: "./greener-chip.png" },
 ];
 
 function Roulette({ user, setUser }) {
   const [spin, setSpin] = useState(null);
   const [currentChip, setCurrentChip] = useState(null);
   const [bets, setBets] = useState({});
-  const [credits, setCredits] = useState(2500);
+  const [credits, setCredits] = useState(250);
 
   function spinWheel() {
     fetch("/spins/0")
@@ -244,51 +244,56 @@ function Roulette({ user, setUser }) {
           </div>
           <div className="clickable doz-item">
             {boardElement("botton-table", "2nd 12", "doz2")}
-          </div>
-          <div name="doz3" className="clickable doz-item">
-            {boardElement("botton-table", "3rd 12", "doz3")}
-          </div>
-        </div>
-        <div className="container-third">
-          <div name="half1" className="clickable outside-section">
-            {boardElement("botton-table", "1-18", "half1")}
-          </div>
-          <div name="even" className="clickable outside-section">
-            {boardElement("botton-table", "EVEN", "even")}
-          </div>
-          <div name="red" className="clickable outside-section">
-            {boardElement("rhomb-red", "", "red")}
-          </div>
-          <div name="black" className="clickable outside-section">
-            {boardElement("rhomb-black", "", "black")}
-          </div>
-          <div name="odd" className="clickable outside-section">
-            {boardElement("botton-table", "ODD", "odd")}
-          </div>
-          <div name="half2" className="clickable outside-section">
-            {boardElement("botton-table", "19-36", "half2")}
-          </div>
-        </div>
-      </div>
-      <button onClick={spinWheel}>Spin</button>
-      <div className="chip-container">
-        {chips.map((chip) => {
-          return (
-            <div key={uuid()}>
-              <img
-                onClick={getChip}
-                name={chip.value}
-                src={chip.image}
-                alt="chip"
-                className={currentChip === chip.value ? "current-chip" : "chip"}
-              />
+            <div name="doz2" className="clickable doz-item">
+              {boardElement("botton-table", "2nd 12", "doz2")}
             </div>
-          );
-        })}
-      </div>
-      <p>Credits: ${credits - betsTotal}</p>
-      <div className="score_hold">
-        {spin ? <p className={spin.color}>{spin.value}</p> : null}
+            <div name="doz3" className="clickable doz-item">
+              {boardElement("botton-table", "3rd 12", "doz3")}
+            </div>
+          </div>
+          <div className="container-third">
+            <div name="half1" className="clickable outside-section">
+              {boardElement("botton-table", "1-18", "half1")}
+            </div>
+            <div name="even" className="clickable outside-section">
+              {boardElement("botton-table", "EVEN", "even")}
+            </div>
+            <div name="red" className="clickable outside-section">
+              {boardElement("rhomb-red", "", "red")}
+            </div>
+            <div name="black" className="clickable outside-section">
+              {boardElement("rhomb-black", "", "black")}
+            </div>
+            <div name="odd" className="clickable outside-section">
+              {boardElement("botton-table", "ODD", "odd")}
+            </div>
+            <div name="half2" className="clickable outside-section">
+              {boardElement("botton-table", "19-36", "half2")}
+            </div>
+          </div>
+        </div>
+        <button onClick={spinWheel}>Spin</button>
+        <div className="chip-container">
+          {chips.map((chip) => {
+            return (
+              <div key={uuid()}>
+                <img
+                  onClick={getChip}
+                  name={chip.value}
+                  src={chip.image}
+                  alt="chip"
+                  className={
+                    currentChip === chip.value ? "current-chip" : "chip"
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+        <p>Credits: ${credits - betsTotal}</p>
+        <div className="score_hold">
+          {spin ? <p className={spin.color}>{spin.value}</p> : null}
+        </div>
       </div>
     </div>
   );
