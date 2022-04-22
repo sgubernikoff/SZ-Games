@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { v4 as uuid } from "uuid";
 
-const chips = [{value: "10", image: "./black-chip.png"}, {value: "50", image: "./brown-chip.png"}, {value: "100", image: "./green-chip.png"}, {value: "500", image: "./greener-chip.png"}]
+const chips = [{value: "5", image: "./black-chip.png"}, {value: "10", image: "./brown-chip.png"}, {value: "25", image: "./green-chip.png"}, {value: "50", image: "./greener-chip.png"}]
 
 function Blackjack({ user, setUser }) {
   const faceDownCard =
@@ -9,7 +9,7 @@ function Blackjack({ user, setUser }) {
   const [deckId, setDeckId] = useState(null);
   const [cards, setCards] = useState({ playerCards: [], dealerCards: [] });
   const [endMode, setEndMode] = useState(false);
-  const [credits, setCredits] = useState(2500);
+  const [credits, setCredits] = useState(250);
   const [bet, setBet] = useState(0);
 
   function getDeck() {
@@ -205,7 +205,7 @@ function Blackjack({ user, setUser }) {
     return (
       <div>
         <div>
-          <p>
+          <p className={cards.playerCards.length === 0 ? "hidden" : ""} >
             Player cards{playerCardsValue === 0 ? "" : `: ${playerCardsValue}`}
           </p>
           <div className="card-container">
@@ -253,7 +253,7 @@ function Blackjack({ user, setUser }) {
           </div>
         </div>
         <div>
-          <p>
+          <p className={cards.dealerCards.length === 0 ? "hidden" : ""}>
             Dealer cards
             {!endMode || cards.dealerCards === 0 ? "" : `: ${dealerCardsValue}`}
           </p>

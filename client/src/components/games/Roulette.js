@@ -2,13 +2,13 @@ import {React, useState} from 'react';
 import { v4 as uuid } from "uuid";
 import timeout from "../timeout";
 
-const chips = [{value: "10", image: "./black-chip.png"}, {value: "50", image: "./brown-chip.png"}, {value: "100", image: "./green-chip.png"}, {value: "500", image: "./greener-chip.png"}]
+const chips = [{value: "5", image: "./black-chip.png"}, {value: "10", image: "./brown-chip.png"}, {value: "25", image: "./green-chip.png"}, {value: "50", image: "./greener-chip.png"}]
 
 function Roulette({user, setUser}) {
   const [spin, setSpin] = useState(null);
   const [currentChip, setCurrentChip] = useState(null);
   const [bets, setBets] = useState({});
-  const [credits, setCredits] = useState(2500);
+  const [credits, setCredits] = useState(250);
 
   function spinWheel() {
     fetch("/spins/0")
@@ -57,7 +57,7 @@ function Roulette({user, setUser}) {
   const betsTotal = Object.values(bets).reduce((a,b) => a+b, 0);
 
   async function calculateWinnings() {
-    await timeout(2000);
+    await timeout(5000);
     let winnings = 0;
     if (Object.keys(bets).includes(spin.value)) {
       winnings = winnings + bets[spin.value]*35;
@@ -225,7 +225,7 @@ function Roulette({user, setUser}) {
           <div name="doz1" className="clickable doz-item">
             {boardElement("botton-table","1st 12", "doz1")}
           </div>
-          <div className="clickable doz-item">
+          <div name="doz2" className="clickable doz-item">
             {boardElement("botton-table","2nd 12", "doz2")}
           </div>
           <div name="doz3" className="clickable doz-item">
