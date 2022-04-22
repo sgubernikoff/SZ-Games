@@ -747,10 +747,11 @@ button {
 
 .cardo img {
   margin-top: 5px;
-  width: 50%;
-  height: auto;
+  width: 400px;
+  height: 350px;
+  object-fit: cover;
   border: 0.5px solid white;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .purchase_name {
@@ -803,10 +804,6 @@ button {
 }
 .black {
   color: black;
-  position: absolute;
-  float: left;
-  left: 10%;
-  top: 16%;
   font-size: 70px;
   font-weight: bold;
   animation: rotation 5s infinite linear;
@@ -814,10 +811,6 @@ button {
 
 .red {
   color: red;
-  position: absolute;
-  float: left;
-  left: 10%;
-  top: 16%;
   font-size: 70px;
   font-weight: bold;
   animation: rotation 5s infinite linear;
@@ -825,13 +818,20 @@ button {
 
 .green {
   color: green;
-  position: absolute;
-  float: left;
-  left: 10%;
-  top: 16%;
   font-size: 70px;
   font-weight: bold;
   animation: rotation 5s infinite linear;
+}
+
+.score_hold {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  background-color: #bea891;
+  width: 25%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
 }
 
 @keyframes rotation {

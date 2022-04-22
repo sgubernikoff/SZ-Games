@@ -287,8 +287,9 @@ function Roulette({ user, setUser }) {
         })}
       </div>
       <p>Credits: ${credits - betsTotal}</p>
-
-      {spin ? <p className={spin.color}>{spin.value}</p> : null}
+      <div className="score_hold">
+        {spin ? <p className={spin.color}>{spin.value}</p> : null}
+      </div>
     </div>
   );
 }
